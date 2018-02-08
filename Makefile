@@ -12,7 +12,7 @@ TESTDEPS=$(patsubst %, $(TESTDIR)/%, $(_TESTDEPS))
 _DEPS=mpnumber.h
 DEPS=$(patsubst %, $(SRCDIR)/%, $(_DEPS))
 
-_OBJ=mpnumber.o
+_OBJ=mpnumber.o addition.o subtraction.o multiplication.o division.o utils.o
 OBJ=$(patsubst %, $(OBJDIR)/%, $(_OBJ))
 
 

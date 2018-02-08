@@ -7,96 +7,99 @@
 #include <unordered_map>
 #include <vector>
 
-typedef uint64_t ulint;
-typedef int64_t lint;
-typedef uint32_t unint;
-typedef int32_t nint;
-
-class InvalidBaseCharacterError : public std::exception
+namespace MPLib
 {
-    private:
-        char oc_;
-        std::string basechars_;
-        std::string error_;
-    
-    public:
-        InvalidBaseCharacterError(char offending_char, std::string base_chars)
-            : oc_(offending_char), basechars_(base_chars) 
-        {
-            error_ += "The character \'";
-            error_ += oc_;
-            error_ += "\' is not contained in the list of supported characters for the base (\"";
-            error_ += basechars_;
-            error_ += "\").";
-        }
+    typedef uint64_t ulint;
+    typedef int64_t lint;
+    typedef uint32_t unint;
+    typedef int32_t nint;
 
-        const char* what() const noexcept
-        {
-            return error_.c_str();
-        }
-};
-
-class MPNumber
-{
-    public:
-        MPNumber();
-        MPNumber(int n);
-        MPNumber(const std::string &number, unint base = 10);
-        ~MPNumber();
+    class InvalidBaseCharacterError : public std::exception
+    {
+        private:
+            char oc_;
+            std::string basechars_;
+            std::string error_;
         
-        unint get(uint location) const;
+        public:
+            InvalidBaseCharacterError(char offending_char, std::string base_chars)
+                : oc_(offending_char), basechars_(base_chars) 
+            {
+                error_ += "The character \'";
+                error_ += oc_;
+                error_ += "\' is not contained in the list of supported characters for the base (\"";
+                error_ += basechars_;
+                error_ += "\").";
+            }
 
-        void reserve(uint size);
-        void shrink_to_fit();
+            const char* what() const noexcept
+            {
+                return error_.c_str();
+            }
+    };
 
-        uint get_size();
+    class MPNumber
+    {
+        public:
+            MPNumber();
+            MPNumber(int n);
+            MPNumber(const std::string &number, unint base = 10);
+            ~MPNumber();
+            
+            unint get(uint location) const;
 
-        std::string get_string(unint base = 10);
-        
-        uint8_t get_byte(uint location);
-        void set_byte(uint location, uint8_t value);
+            void reserve(uint size);
+            void shrink_to_fit();
 
-        bool check_bit(uint location);
-        void set_bit(uint location, bool value);
+            uint get_size();
 
-        bool is_zero();
-        bool greater_than(const MPNumber &n);
+            std::string get_string(unint base = 10);
+            
+            uint8_t get_byte(uint location);
+            void set_byte(uint location, uint8_t value);
 
-        MPNumber multiply(const MPNumber &n);
-        MPNumber multiply(nint n);
+            bool check_bit(uint location);
+            void set_bit(uint location, bool value);
 
-        MPNumber divide(const MPNumber &n);
-        MPNumber divide(nint n);
+            bool is_zero();
+            bool greater_than(const MPNumber &n);
 
-        MPNumber mod(const MPNumber &n);
-        unint mod(unint n);
+            MPNumber multiply(const MPNumber &n);
+            MPNumber multiply(nint n);
 
-        MPNumber add(const MPNumber &n);
-        MPNumber add(nint n);
+            MPNumber divide(const MPNumber &n);
+            MPNumber divide(nint n);
 
-        MPNumber subtract(const MPNumber &n);
-        MPNumber subtract(nint n);
+            MPNumber mod(const MPNumber &n);
+            unint mod(unint n);
 
-        MPNumber pow(uint n);
+            MPNumber add(const MPNumber &n);
+            MPNumber add(nint n);
 
-        MPNumber square();
+            MPNumber subtract(const MPNumber &n);
+            MPNumber subtract(nint n);
 
-        MPNumber negate() const;
+            MPNumber pow(uint n);
 
-    private:
-        std::vector<unint> num;
-        bool positive;
+            MPNumber square();
 
-        std::unordered_map<uint, std::string> base_strs;
+            MPNumber negate() const;
 
-        void initialize_values();
+        private:
+            std::vector<unint> num;
+            bool positive;
 
-        MPNumber raw_add(const MPNumber &n);
-        MPNumber raw_add(unint n);
+            std::unordered_map<uint, std::string> base_strs;
 
-        MPNumber raw_subtract(const MPNumber &n);
-        MPNumber raw_subtract(unint n);
+            void initialize_values();
 
-};
+            MPNumber raw_add(const MPNumber &n);
+            MPNumber raw_add(unint n);
+
+            MPNumber raw_subtract(const MPNumber &n);
+            MPNumber raw_subtract(unint n);
+
+    };
+}
 
 #endif /* MPNUM_H */

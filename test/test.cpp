@@ -7,6 +7,16 @@
 
 namespace testing
 {
+    // TODO(xlonefy): fix this "using" mess.
+    using MPLib::MPNumber;
+    using MPLib::InvalidBaseCharacterError;
+
+    using MPLib::unint;
+    using MPLib::nint;
+    using MPLib::ulint;
+    using MPLib::lint;
+    
+
     const unsigned int NUM_TESTS = 1000;
     const unsigned int MAX_STR_LEN = 500;
     const unsigned int MAX_INT_STR_LEN = 9;

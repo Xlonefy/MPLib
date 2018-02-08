@@ -163,7 +163,7 @@ namespace testing
             unint b = std::rand();
             MPNumber a(a_str);
 
-            EXPECT_GE(b, a.mod(b));
+            EXPECT_GT(b, a.mod(b));
         }
     }
 

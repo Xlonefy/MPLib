@@ -59,7 +59,7 @@ namespace MPLib
             void reserve(uint size);
             void shrink_to_fit();
 
-            uint get_size();
+            uint get_size() const;
 
             std::string get_string(unint base = 10);
             

@@ -125,7 +125,7 @@ namespace MPLib
     }
 
 
-    bool MPNumber::greater_than(const MPNumber &n) const
+    bool MPNumber::greater_than(const MPNumber &n)
     {
         ulint n_sz = n.get_size();
         ulint this_sz = get_size();

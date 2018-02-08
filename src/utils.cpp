@@ -32,17 +32,24 @@ namespace MPLib
 
     void MPNumber::shrink_to_fit()
     {   
-        // TODO(xlonefy): turn this into a const method.
         while (*num.rbegin() == 0 && num.size() > 1)
         {
             num.pop_back();
         }
     }
 
-    uint MPNumber::get_size()
+    uint MPNumber::get_size() const
     {
-        shrink_to_fit();
-        return num.size();
+        ulint size = num.size();
+
+        auto i = num.begin();
+        while (i != num.end() && *i == 0)
+        {
+            size--;
+            i++;
+        }
+
+        return (size) ? size : 1;
     }
 
     std::string MPNumber::get_string(unint base)
@@ -118,9 +125,9 @@ namespace MPLib
     }
 
 
-    bool MPNumber::greater_than(const MPNumber &n)
+    bool MPNumber::greater_than(const MPNumber &n) const
     {
-        ulint n_sz = n.num.size();
+        ulint n_sz = n.get_size();
         ulint this_sz = get_size();
         if (this_sz > n_sz)
         {

@@ -58,6 +58,7 @@ namespace MPLib
         }
 
         positive = is_positive;
+        shrink_to_fit();
     }
 
     MPNumber::~MPNumber() {}

@@ -14,7 +14,7 @@
 
 namespace testing
 {
-    const unsigned int NUM_TESTS = 10;
+    const unsigned int NUM_TESTS = 1000;
     const unsigned int MAX_STR_LEN = 500;
     const unsigned int MAX_INT_STR_LEN = 9;
 
@@ -31,20 +31,21 @@ namespace testing
             str.erase(0, 1);
         }
 
+        if (str.length() == 0)
+        {
+            str = "0";
+            return str;
+        }
+
         if (add_negative)
         {
             str.insert(str.begin(), '-');
         }    
 
-        if (str.length() == 0)
-        {
-            str = "0";
-        }
-
         return str;
     }
 
-    std::string random_decimal_str(unsigned int length)
+    std::string random_decimal_str(unsigned int length, bool positive_only = false)
     {
         std::srand(std::time(nullptr));
         char decimal[11] = "0123456789";
@@ -58,7 +59,8 @@ namespace testing
         short rint = 0;
         if ((rint = (std::rand() % 3)))
         {
-            rnd.insert(rnd.begin(), (rint == 1) ? '+' : '-');
+            char c = (rint == 1) ? '+' : '-';
+            rnd.insert(rnd.begin(), (positive_only) ? '+' : c);
         }
 
         return rnd;
@@ -101,7 +103,7 @@ namespace testing
         {
             std::string a_str, b_str;
             a_str = random_decimal_str(std::rand() % MAX_STR_LEN);
-            b_str = random_decimal_str(std::rand() % MAX_INT_STR_LEN);
+            b_str = random_decimal_str(std::rand() % MAX_INT_STR_LEN, true);
             MPNumber a(a_str), b(b_str);
 
             EXPECT_EQ(a.add(b).get_string(), a.add(b.get(0)).get_string());
@@ -128,7 +130,7 @@ namespace testing
         {
             std::string a_str, b_str;
             a_str = random_decimal_str(std::rand() % MAX_STR_LEN);
-            b_str = random_decimal_str(std::rand() % MAX_INT_STR_LEN);
+            b_str = random_decimal_str(std::rand() % MAX_INT_STR_LEN, true);
             MPNumber a(a_str), b(b_str);
 
             EXPECT_EQ(a.subtract(b).get_string(), a.subtract(b.get(0)).get_string());

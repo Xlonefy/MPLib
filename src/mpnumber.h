@@ -61,35 +61,35 @@ namespace MPLib
 
             uint get_size() const;
 
-            std::string get_string(unint base = 10);
+            std::string get_string(unint base = 10) const;
             
-            uint8_t get_byte(uint location);
+            uint8_t get_byte(uint location) const;
             void set_byte(uint location, uint8_t value);
 
-            bool check_bit(uint location);
+            bool check_bit(uint location) const;
             void set_bit(uint location, bool value);
 
-            bool is_zero();
-            bool greater_than(const MPNumber &n);
+            bool is_zero() const;
+            bool greater_than(const MPNumber &n) const;
 
-            MPNumber multiply(const MPNumber &n);
-            MPNumber multiply(nint n);
+            MPNumber multiply(const MPNumber &n) const;
+            MPNumber multiply(nint n) const;
 
-            MPNumber divide(const MPNumber &n);
-            MPNumber divide(nint n);
+            MPNumber divide(const MPNumber &n) const;
+            MPNumber divide(nint n) const;
 
-            MPNumber mod(const MPNumber &n);
-            unint mod(unint n);
+            MPNumber mod(const MPNumber &n) const;
+            unint mod(unint n) const;
 
-            MPNumber add(const MPNumber &n);
-            MPNumber add(nint n);
+            MPNumber add(const MPNumber &n) const;
+            MPNumber add(nint n) const;
 
-            MPNumber subtract(const MPNumber &n);
-            MPNumber subtract(nint n);
+            MPNumber subtract(const MPNumber &n) const;
+            MPNumber subtract(nint n) const;
 
-            MPNumber pow(uint n);
+            MPNumber pow(uint n) const;
 
-            MPNumber square();
+            MPNumber square() const;
 
             MPNumber negate() const;
 
@@ -101,11 +101,11 @@ namespace MPLib
 
             void initialize_values();
 
-            MPNumber raw_add(const MPNumber &n);
-            MPNumber raw_add(unint n);
+            MPNumber raw_add(const MPNumber &n) const;
+            MPNumber raw_add(unint n) const;
 
-            MPNumber raw_subtract(const MPNumber &n);
-            MPNumber raw_subtract(unint n);
+            MPNumber raw_subtract(const MPNumber &n) const;
+            MPNumber raw_subtract(unint n) const;
 
     };
 }

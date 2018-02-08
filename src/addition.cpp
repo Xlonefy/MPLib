@@ -12,7 +12,7 @@
 
 namespace MPLib
 {
-    MPNumber MPNumber::add(const MPNumber &n) 
+    MPNumber MPNumber::add(const MPNumber &n) const
     {
         if (!n.positive)
         {
@@ -38,7 +38,7 @@ namespace MPLib
         }
     }
 
-    MPNumber MPNumber::add(nint n) 
+    MPNumber MPNumber::add(nint n) const 
     {
         if (n < 0)
         {
@@ -64,7 +64,7 @@ namespace MPLib
         }
     }
 
-    MPNumber MPNumber::raw_add(const MPNumber &n)
+    MPNumber MPNumber::raw_add(const MPNumber &n) const
     {
         MPNumber res;
         res.positive = true;
@@ -99,7 +99,7 @@ namespace MPLib
         return res;
     }
 
-    MPNumber MPNumber::raw_add(unint n)
+    MPNumber MPNumber::raw_add(unint n) const
     {
         MPNumber res = *this;
         unint sum = n + num.at(0);

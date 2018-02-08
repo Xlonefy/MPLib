@@ -52,7 +52,7 @@ namespace MPLib
         return (size) ? size : 1;
     }
 
-    std::string MPNumber::get_string(unint base)
+    std::string MPNumber::get_string(unint base) const
     {
         std::string base_str = base_strs.at(base);
         MPNumber number = *this;
@@ -62,7 +62,7 @@ namespace MPLib
         {
             char cur_digit = base_str.at(number.mod(base));
             res.insert(res.begin(), cur_digit);
-            number = number.divide(base);
+            number = number.divide(base); 
         }
 
         if (res.length() == 0)
@@ -79,7 +79,7 @@ namespace MPLib
         return res;
     }
 
-    uint8_t MPNumber::get_byte(uint location)
+    uint8_t MPNumber::get_byte(uint location) const
     {
         int index = location / sizeof(unint);
         int shift = (location % sizeof(unint)) * 8;
@@ -97,7 +97,7 @@ namespace MPLib
         num.at(index) += value << shift;
     }
 
-    bool MPNumber::check_bit(uint location) 
+    bool MPNumber::check_bit(uint location) const 
     {
         int index = location / (8 * sizeof(unint));
         int shift = location % (8 * sizeof(unint));
@@ -114,7 +114,7 @@ namespace MPLib
         num.at(index) += static_cast<unint>(value) << shift;
     }
 
-    bool MPNumber::is_zero()
+    bool MPNumber::is_zero() const
     {
         if (get_size() == 1 && num.at(0) == 0)
         {
@@ -125,7 +125,7 @@ namespace MPLib
     }
 
 
-    bool MPNumber::greater_than(const MPNumber &n)
+    bool MPNumber::greater_than(const MPNumber &n) const
     {
         ulint n_sz = n.get_size();
         ulint this_sz = get_size();

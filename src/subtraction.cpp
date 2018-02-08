@@ -12,17 +12,17 @@
 
 namespace MPLib
 {
-    MPNumber MPNumber::subtract(const MPNumber &n)
+    MPNumber MPNumber::subtract(const MPNumber &n) const
     {
         return add(n.negate());
     }
 
-    MPNumber MPNumber::subtract(nint n)
+    MPNumber MPNumber::subtract(nint n) const
     {
         return add(-n);
     }
 
-    MPNumber MPNumber::raw_subtract(const MPNumber &n)
+    MPNumber MPNumber::raw_subtract(const MPNumber &n) const
     {
         unint this_size = get_size();
         unint n_size = n.num.size();
@@ -31,7 +31,7 @@ namespace MPLib
         MPNumber res = (greater_than(n)) ? *this : n;
         const MPNumber &smallest = (greater_than(n)) ? n : *this;
         
-        if (!greater_than(n))
+        if (!greater_than(n)) 
         {
             res.positive = !positive;
         }
@@ -53,7 +53,7 @@ namespace MPLib
         return res;
     }
 
-    MPNumber MPNumber::raw_subtract(unint n)
+    MPNumber MPNumber::raw_subtract(unint n) const
     {
         MPNumber res = *this;
         

@@ -12,12 +12,12 @@
 
 namespace MPLib
 {
-    MPNumber MPNumber::multiply(const MPNumber &n)
+    MPNumber MPNumber::multiply(const MPNumber &n) const
     {
         throw std::runtime_error("Uninplemented");
     } // TODO(xlonefy): implement
 
-    MPNumber MPNumber::multiply(nint n)
+    MPNumber MPNumber::multiply(nint n) const
     {
         MPNumber prod;
         prod.reserve(get_size() + 1);
@@ -43,7 +43,7 @@ namespace MPLib
         return prod;
     }
 
-    MPNumber MPNumber::pow(uint n)
+    MPNumber MPNumber::pow(uint n) const
     {
         MPNumber accumulator(1);
         accumulator.reserve(n * get_size());
@@ -66,7 +66,7 @@ namespace MPLib
         return accumulator;
     }
 
-    MPNumber MPNumber::square()
+    MPNumber MPNumber::square() const
     {
         return (*this).multiply(*this);
     }

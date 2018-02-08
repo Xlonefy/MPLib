@@ -12,12 +12,12 @@
 
 namespace MPLib
 {
-    MPNumber MPNumber::divide(const MPNumber &n)
+    MPNumber MPNumber::divide(const MPNumber &n) const
     {
         throw std::runtime_error("Uninplemented");
     } // TODO(xlonefy): implement
 
-    MPNumber MPNumber::divide(nint n) 
+    MPNumber MPNumber::divide(nint n) const
     {
         MPNumber quot;
         quot.reserve(get_size());
@@ -39,12 +39,12 @@ namespace MPLib
         return quot;
     }
 
-    MPNumber MPNumber::mod(const MPNumber &n)
+    MPNumber MPNumber::mod(const MPNumber &n) const
     {
         throw std::runtime_error("Uninplemented");
     } // TODO(xlonefy): implement
 
-    unint MPNumber::mod(unint n) 
+    unint MPNumber::mod(unint n) const 
     {
         unint carry = 0;
         for (auto i = num.rbegin(); i != num.rend(); i++)

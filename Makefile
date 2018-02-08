@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-O2 -Wall -Wextra
+CFLAGS=-O2 -Wall -Wextra -Wno-unused-parameter
 TESTFLAGS=-lgtest -lgtest_main -pthread
 
 SRCDIR=./src
@@ -27,4 +27,4 @@ test: $(TESTDEPS) $(OBJ)
 	./test/test.elf
 
 clean:
-	rm -rf $(OBJDIR)/* $(TESTDIR)/*.elf
+	rm -rf $(OBJDIR)/* $(TESTDIR)/*.elf libmplib.a

@@ -4,13 +4,6 @@
 
 #include "../src/mpnumber.h"
 
-// for (auto i = str.begin(); i != str.end; i++)
-// {
-//     if (*i != '+' && *i != '-' && *i != '0')
-//     {
-        
-//     }
-// }
 
 namespace testing
 {
@@ -178,6 +171,21 @@ namespace testing
             MPNumber a(a_str);
 
             EXPECT_EQ(a.get_string(), a.multiply(b).divide(b).get_string());
+        }
+    }
+
+    TEST(MPNumberTest, TestMultiplicationDivision)
+    {
+        std::srand(std::time(nullptr));
+        for (unsigned int i = 0; i < NUM_TESTS; i++)
+        {
+            std::string a_str, b_str;
+            a_str = random_decimal_str(std::rand() % MAX_STR_LEN);
+            b_str = random_decimal_str(std::rand() % MAX_STR_LEN);
+            MPNumber a(a_str), b(b_str);
+
+            EXPECT_EQ(remove_redundancies(a_str), a.multiply(b).divide(b).get_string());
+            EXPECT_EQ(remove_redundancies(b_str), a.multiply(b).divide(a).get_string());
         }
     }
 }

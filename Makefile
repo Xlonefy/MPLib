@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-O4 -Wall -Wextra -Wno-unused-parameter -ggdb
-TESTFLAGS=-lgtest -lgtest_main -pthread -L./ -lmplib 
+TESTFLAGS=-lgtest -pthread -L./ -lmplib 
 
 SRCDIR=./src
 OBJDIR=./objs

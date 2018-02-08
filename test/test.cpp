@@ -151,4 +151,33 @@ namespace testing
             EXPECT_EQ(remove_redundancies(b_str), a.add(b).subtract(a).get_string());
         }
     }
+
+    // TODO(xlonefy): implement a better test
+    TEST(MPNumberTest, TestSingleIntMod)
+    {
+        std::srand(std::time(nullptr));
+        for (unsigned int i = 0; i < NUM_TESTS; i++)
+        {
+            std::string a_str;
+            a_str = random_decimal_str(std::rand() % MAX_STR_LEN);
+            unint b = std::rand();
+            MPNumber a(a_str);
+
+            EXPECT_GE(b, a.mod(b));
+        }
+    }
+
+    TEST(MPNumberTest, TestSingleIntMulDiv)
+    {
+        std::srand(std::time(nullptr));
+        for (unsigned int i = 0; i < NUM_TESTS; i++)
+        {
+            std::string a_str;
+            a_str = random_decimal_str(std::rand() % MAX_STR_LEN);
+            nint b = std::rand();
+            MPNumber a(a_str);
+
+            EXPECT_EQ(a.get_string(), a.multiply(b).divide(b).get_string());
+        }
+    }
 }

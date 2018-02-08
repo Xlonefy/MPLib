@@ -71,8 +71,8 @@ namespace MPLib
 
         res.num.pop_back();
 
-        unint this_size = get_size();
-        unint n_size = n.num.size();
+        unint this_size = num_size();
+        unint n_size = n.num_size();
         unint size = std::max(this_size, n_size);
 
         res.reserve(size + 1);

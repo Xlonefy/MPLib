@@ -14,7 +14,7 @@ namespace MPLib
 {
     unint MPNumber::get(uint location) const
     {
-        if (location < num.size())
+        if (location < num_size())
         {
             return num.at(location);
         }
@@ -32,15 +32,15 @@ namespace MPLib
 
     void MPNumber::shrink_to_fit()
     {   
-        while (*num.rbegin() == 0 && num.size() > 1)
+        while (*num.rbegin() == 0 && num_size() > 1)
         {
             num.pop_back();
         }
     }
 
-    uint MPNumber::get_size() const
+    unint MPNumber::get_size() const
     {
-        ulint size = num.size();
+        ulint size = num_size();
 
         auto i = num.begin();
         while (i != num.end() && *i == 0)
@@ -50,6 +50,11 @@ namespace MPLib
         }
 
         return (size) ? size : 1;
+    }
+
+    unint MPNumber::num_size() const
+    {
+        return num.size();
     }
 
     std::string MPNumber::get_string(unint base) const

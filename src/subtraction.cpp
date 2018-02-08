@@ -24,8 +24,8 @@ namespace MPLib
 
     MPNumber MPNumber::raw_subtract(const MPNumber &n) const
     {
-        unint this_size = get_size();
-        unint n_size = n.num.size();
+        unint this_size = num_size();
+        unint n_size = n.num_size();
         unint size = std::max(this_size, n_size);
 
         MPNumber res = (greater_than(n)) ? *this : n;

@@ -198,4 +198,19 @@ namespace testing
             EXPECT_EQ(remove_redundancies(b_str), a.multiply(b).divide(a).get_string());
         }
     }
+
+    TEST(MPNumberTest, TestGetSize)
+    {
+        std::srand(std::time(nullptr));
+        for (unsigned int i = 0; i < NUM_TESTS; i++)
+        {
+            std::string a_str;
+            a_str = random_decimal_str(std::rand() % MAX_STR_LEN);
+            
+            MPNumber a(a_str);
+            a.shrink_to_fit();
+            
+            EXPECT_EQ(a.num_size(), a.get_size());
+        }
+    }
 }

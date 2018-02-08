@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-O2 -Wall -Wextra -Wno-unused-parameter
+CFLAGS=-O4 -Wall -Wextra -Wno-unused-parameter -ggdb
 TESTFLAGS=-lgtest -lgtest_main -pthread
 
 SRCDIR=./src

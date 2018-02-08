@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-O4 -Wall -Wextra -Wno-unused-parameter -ggdb
-TESTFLAGS=-lgtest -lgtest_main -pthread
+TESTFLAGS=-lgtest -lgtest_main -pthread -L./ -lmplib 
 
 SRCDIR=./src
 OBJDIR=./objs
@@ -22,8 +22,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(DEPS)
 build: $(OBJ)
 	ar cr libmplib.a $(OBJ)
 
-test: $(TESTDEPS) $(OBJ)
-	$(CC) -o $(TESTDIR)/test.elf $(TESTDIR)/test.cpp $(CFLAGS) $(OBJ) $(TESTFLAGS)
+test: $(TESTDEPS) libmplib.a
+	$(CC) -o $(TESTDIR)/test.elf $(TESTDIR)/test.cpp $(CFLAGS) $(TESTFLAGS)
 	./test/test.elf
 
 clean:

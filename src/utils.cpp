@@ -1,13 +1,10 @@
-/****************************************************************************
- *  mpnumber.cpp                                                            *
- *                                                                          *
- *  João V. M. Andreotti                                                    *
- *                                                                          *
- *  This file contains the implementations of all of the functions defined  *
- *  in the "MPNumber" class present in the file "mpnumber.h"                *
- *                                                                          *
- ****************************************************************************/
-
+//////////////////////////////////////////////////////////////////
+// utils.cpp                                                    //
+//                                                              //
+// João V. M. Andreotti                                         //
+//                                                              //
+// Implements all the utility functions defined in "mpnumber.h" //
+//////////////////////////////////////////////////////////////////
 
 #include "mpnumber.h"
 
@@ -34,7 +31,8 @@ namespace MPLib
     }
 
     void MPNumber::shrink_to_fit()
-    {
+    {   
+        // TODO(xlonefy): turn this into a const method.
         while (*num.rbegin() == 0 && num.size() > 1)
         {
             num.pop_back();

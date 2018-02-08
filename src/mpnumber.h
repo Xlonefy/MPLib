@@ -1,3 +1,11 @@
+//////////////////////////////////////////////////////////////////////////
+// mpnumber.h                                                           //
+//                                                                      //
+// João V. M. Andreotti                                                 //
+//                                                                      //
+// Class definition for both MPNumber and InstanceBaseCharacterException//
+//////////////////////////////////////////////////////////////////////////
+
 #ifndef MPNUM_H
 #define MPNUM_H
 

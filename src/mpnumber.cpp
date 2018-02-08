@@ -1,13 +1,10 @@
-/****************************************************************************
- *  mpnumber.cpp                                                            *
- *                                                                          *
- *  João V. M. Andreotti                                                    *
- *                                                                          *
- *  This file contains the implementations of all of the functions defined  *
- *  in the "MPNumber" class present in the file "mpnumber.h"                *
- *                                                                          *
- ****************************************************************************/
-
+////////////////////////////////////////////////////////////////////////////
+// mpnumber.cpp                                                           //
+//                                                                        //
+// João V. M. Andreotti                                                   //
+//                                                                        //
+// Implements all instantiation related functions defined in "mpnumber.h" //
+////////////////////////////////////////////////////////////////////////////
 
 #include "mpnumber.h"
 

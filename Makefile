@@ -1,8 +1,13 @@
 CC=g++
 CFLAGS=-O2 -Wall -Wextra
+TESTFLAGS=-lgtest -lgtest_main -pthread
 
 SRCDIR=./src
 OBJDIR=./objs
+TESTDIR=./test
+
+_TESTDEPS=test.cpp
+TESTDEPS=$(patsubst %, $(TESTDIR)/%, $(_TESTDEPS))
 
 _DEPS=mpnumber.h
 DEPS=$(patsubst %, $(SRCDIR)/%, $(_DEPS))
@@ -17,5 +22,9 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(DEPS)
 build: $(OBJ)
 	ar cr libmplib.a $(OBJ)
 
+test: $(TESTDEPS) $(OBJ)
+	$(CC) -o $(TESTDIR)/test.elf $(TESTDIR)/test.cpp $(CFLAGS) $(OBJ) $(TESTFLAGS)
+	./test/test.elf
+
 clean:
-	rm -rf $(OBJDIR)/*
+	rm -rf $(OBJDIR)/* $(TESTDIR)/*.elf

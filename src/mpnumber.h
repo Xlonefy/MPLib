@@ -22,6 +22,7 @@ namespace MPLib
     typedef uint32_t unint;
     typedef int32_t nint;
 
+    // TODO(xlonefy): make it inherit from std::runtime_error
     class InvalidBaseCharacterError : public std::exception
     {
         private:
@@ -32,7 +33,7 @@ namespace MPLib
         public:
             InvalidBaseCharacterError(char offending_char, std::string base_chars)
                 : oc_(offending_char), basechars_(base_chars) 
-            {
+            { // TODO(xlonefy): pass this implementation to a different file
                 error_ += "The character \'";
                 error_ += oc_;
                 error_ += "\' is not contained in the list of supported characters for the base (\"";
@@ -51,10 +52,13 @@ namespace MPLib
         public:
             MPNumber();
             MPNumber(int n);
+            MPNumber(const std::vector<unint> &num);
             MPNumber(const std::string &number, unint base = 10);
             ~MPNumber();
             
             unint get(ulint location) const;
+
+            std::pair<MPNumber, MPNumber> split_at(ulint location) const;
 
             void reserve(uint size);
             void shrink_to_fit();

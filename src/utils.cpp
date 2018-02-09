@@ -25,6 +25,30 @@ namespace MPLib
 
     }
 
+    std::pair<MPNumber, MPNumber> MPNumber::split_at(ulint location) const
+    {
+        ulint this_size = num_size();
+
+        std::vector<unint> first_half, second_half;
+        first_half.reserve(location);
+        second_half.reserve(this_size - location);
+
+        for (ulint i = 0; i < this_size; i++)
+        {
+            if (i < location)
+            {
+                first_half.push_back(get(i));
+            }
+            else
+            {
+                second_half.push_back(get(i));
+            }
+        }
+
+        // MPNumber(
+        return {first_half, second_half};
+    }
+
     void MPNumber::reserve(uint size)
     {
         num.reserve(size);

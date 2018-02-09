@@ -19,7 +19,7 @@ using MPLib::lint;
 
 
 const unsigned int NUM_TESTS = 1000;
-const unsigned int MAX_STR_LEN = 500;
+const unsigned int MAX_STR_LEN = 150;
 const unsigned int MAX_INT_STR_LEN = 9;
 
 std::string remove_redundancies(std::string str)
@@ -169,10 +169,23 @@ TEST(MPNumberTest, TestSingleIntMulDiv)
     {
         std::string a_str;
         a_str = random_decimal_str(mtrandom() % MAX_STR_LEN);
-        nint b = mtrandom();
+        unint b = mtrandom();
         MPNumber a(a_str);
 
         EXPECT_EQ(a.get_string(), a.multiply(b).divide(b).get_string());
+    }
+}
+
+TEST(MPNumberTest, TestMultiplicationCommutativity)
+{   
+    for (unsigned int i = 0; i < NUM_TESTS; i++)
+    {
+        std::string a_str, b_str;
+        a_str = random_decimal_str(mtrandom() % MAX_STR_LEN);
+        b_str = random_decimal_str(mtrandom() % MAX_STR_LEN);
+        MPNumber a(a_str), b(b_str);
+
+        EXPECT_EQ(b.multiply(a).get_string(), a.multiply(b).get_string());
     }
 }
 
@@ -185,8 +198,12 @@ TEST(MPNumberTest, TestMultiplicationDivision)
         b_str = random_decimal_str(mtrandom() % MAX_STR_LEN);
         MPNumber a(a_str), b(b_str);
 
-        EXPECT_EQ(remove_redundancies(a_str), a.multiply(b).divide(b).get_string());
-        EXPECT_EQ(remove_redundancies(b_str), a.multiply(b).divide(a).get_string());
+        if (a.equals(MPNumber(0)))
+        {
+            a = a.add(1);
+        }
+
+        EXPECT_EQ(b.get_string(), b.multiply(a).divide(a).get_string());
     }
 }
 
@@ -201,6 +218,16 @@ TEST(MPNumberTest, TestGetSize)
         a.shrink_to_fit();
         
         EXPECT_EQ(a.num_size(), a.get_size());
+    }
+}
+
+TEST(MPNumberTest, TestEquality)
+{   
+    for (unsigned int i = 0; i < NUM_TESTS; i++)
+    {
+        std::string str = random_decimal_str(mtrandom() % MAX_STR_LEN);
+        MPNumber a(str), b(str);
+        EXPECT_TRUE(b.equals(a));
     }
 }
 

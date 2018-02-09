@@ -54,10 +54,11 @@ namespace MPLib
             MPNumber(const std::string &number, unint base = 10);
             ~MPNumber();
             
-            unint get(uint location) const;
+            unint get(ulint location) const;
 
             void reserve(uint size);
             void shrink_to_fit();
+            void shift_left(unint ammount);
 
             unint get_size() const;
             unint num_size() const;
@@ -70,14 +71,17 @@ namespace MPLib
             bool check_bit(uint location) const;
             void set_bit(uint location, bool value);
 
+            // TODO(xlonefy): do a compare function which can be called by these
             bool is_zero() const;
             bool greater_than(const MPNumber &n) const;
+            bool lower_than(const MPNumber &n) const;
+            bool equals(const MPNumber &n) const;
 
             MPNumber multiply(const MPNumber &n) const;
-            MPNumber multiply(nint n) const;
+            MPNumber multiply(unint n) const;
 
             MPNumber divide(const MPNumber &n) const;
-            MPNumber divide(nint n) const;
+            MPNumber divide(unint n) const;
 
             MPNumber mod(const MPNumber &n) const;
             unint mod(unint n) const;
@@ -93,6 +97,10 @@ namespace MPLib
             MPNumber square() const;
 
             MPNumber negate() const;
+
+            friend MPNumber quadratic_multiply(const MPNumber &a, const MPNumber &b);
+            friend MPNumber karatsuba_multiply(const MPNumber &a, const MPNumber &b);
+            friend MPNumber toom3_multiply(const MPNumber &a, const MPNumber &b);
 
         private:
             std::vector<unint> num;

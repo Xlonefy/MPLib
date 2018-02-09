@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-O4 -Wall -Wextra -Wno-unused-parameter -ggdb
+CFLAGS=-O4 -Wall -Wextra -Wno-unused-parameter -march=native
 TESTFLAGS=-lgtest -pthread -L./ -lmplib 
 
 SRCDIR=./src
@@ -12,7 +12,7 @@ TESTDEPS=$(patsubst %, $(TESTDIR)/%, $(_TESTDEPS))
 _DEPS=mpnumber.h
 DEPS=$(patsubst %, $(SRCDIR)/%, $(_DEPS))
 
-_OBJ=mpnumber.o addition.o subtraction.o multiplication.o division.o utils.o
+_OBJ=mpnumber.o addition.o subtraction.o multiplication.o division.o utils.o multiplication_algos.o
 OBJ=$(patsubst %, $(OBJDIR)/%, $(_OBJ))
 
 

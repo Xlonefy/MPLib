@@ -14,18 +14,14 @@ namespace MPLib
 {
     MPNumber MPNumber::multiply(const MPNumber &n) const
     {
-        throw std::runtime_error("Uninplemented");
-    } // TODO(xlonefy): implement
+        return quadratic_multiply(*this, n);
+    } 
 
-    MPNumber MPNumber::multiply(nint n) const
+    MPNumber MPNumber::multiply(unint n) const
     {
-        MPNumber prod;
+        MPNumber prod; 
         prod.reserve(get_size() + 1);
-        prod.positive = !(positive ^ ((n < 0) ? false : true)); 
-
         prod.num.pop_back();
-
-        n = ABS(n);
 
         unint carry = 0;
         for (auto i = num.begin(); i != num.end(); i++)
@@ -39,7 +35,8 @@ namespace MPLib
 
         prod.num.push_back(carry);
         prod.shrink_to_fit();
-
+        prod.positive = positive;
+        
         return prod;
     }
 

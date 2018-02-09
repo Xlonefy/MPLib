@@ -12,7 +12,7 @@
 
 namespace MPLib
 {
-    unint MPNumber::get(uint location) const
+    unint MPNumber::get(ulint location) const
     {
         if (location < num_size())
         {
@@ -42,7 +42,7 @@ namespace MPLib
     {
         for (unint i = 0; i < ammount; i++)
         {
-            num.insert(num.begin(), 0);
+            num.emplace(num.begin(), 0);
         }
     }
 
@@ -50,8 +50,8 @@ namespace MPLib
     {
         ulint size = num_size();
 
-        auto i = num.begin();
-        while (i != num.end() && *i == 0)
+        auto i = num.rbegin();
+        while (i != num.rend() && *i == 0)
         {
             size--;
             i++;
@@ -151,9 +151,7 @@ namespace MPLib
             return false;
         }
 
-        ulint size = n_sz;
-
-        for (ulint i = size; i != 0; i--)
+        for (ulint i = n_sz; i != 0; i--)
         {
             unint this_num = get(i - 1);
             unint n_num = n.get(i - 1);
@@ -171,6 +169,37 @@ namespace MPLib
         return false;
     }
 
+    bool MPNumber::lower_than(const MPNumber &n) const
+    {
+        ulint n_sz = n.get_size();
+        ulint this_sz = get_size();
+        if (this_sz < n_sz)
+        {
+            return true;
+        }
+        else if (n_sz > this_sz)
+        {
+            return false;
+        }
+
+        for (ulint i = n_sz; i != 0; i--)
+        {
+            unint this_num = get(i - 1);
+            unint n_num = n.get(i - 1);
+            
+            if (this_num > n_num)
+            {
+                return false;
+            }
+            else if (n_num > this_num)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     bool MPNumber::equals(const MPNumber &n) const
     {
         ulint n_sz = n.get_size();
@@ -181,9 +210,7 @@ namespace MPLib
             return false;
         }
 
-        ulint size = n_sz;
-
-        for (int i = 0; i < n_sz; i++)
+        for (ulint i = 0; i < n_sz; i++)
         {
             if(get(i) != n.get(i))
             {

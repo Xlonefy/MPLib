@@ -38,6 +38,14 @@ namespace MPLib
         }
     }
 
+    void MPNumber::shift_left(unint ammount)
+    {
+        for (unint i = 0; i < ammount; i++)
+        {
+            num.insert(num.begin(), 0);
+        }
+    }
+
     unint MPNumber::get_size() const
     {
         ulint size = num_size();
@@ -161,6 +169,29 @@ namespace MPLib
         }
 
         return false;
+    }
+
+    bool MPNumber::equals(const MPNumber &n) const
+    {
+        ulint n_sz = n.get_size();
+        ulint this_sz = get_size();
+
+        if (n_sz != this_sz)
+        {
+            return false;
+        }
+
+        ulint size = n_sz;
+
+        for (int i = 0; i < n_sz; i++)
+        {
+            if(get(i) != n.get(i))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     MPNumber MPNumber::negate() const

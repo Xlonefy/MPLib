@@ -12,9 +12,24 @@
 
 namespace MPLib
 {
+    std::ostream &operator<<(std::ostream &stream, const MPLib::MPNumber &n)
+    {
+        stream << n.get_string();
+        return stream;
+    }
+
     MPNumber MPNumber::multiply(const MPNumber &n) const
     {
-        return quadratic_multiply(*this, n);
+        // std::cout << "Mul " << *this << " * " << n << "\n";
+        ulint size = std::max(get_size(), n.get_size()); 
+        if (size < 175)
+        {
+            return quadratic_multiply(*this, n);
+        }
+        else
+        {
+            return karatsuba_multiply(*this, n);
+        }
     } 
 
     MPNumber MPNumber::multiply(unint n) const

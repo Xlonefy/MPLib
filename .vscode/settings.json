@@ -30,6 +30,7 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "cmath": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "functional": "cpp"
     }
 }

@@ -24,12 +24,6 @@ namespace MPLib
         positive = n >= 0;
     }
 
-    MPNumber::MPNumber(const std::vector<unint> &num)
-    {
-        initialize_values();
-        this->num = num;
-    }
-
     MPNumber::MPNumber(const std::string &number, unint base) 
     {
         initialize_values(); 

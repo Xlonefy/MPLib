@@ -24,9 +24,9 @@ namespace MPLib
 
     MPNumber MPNumber::raw_subtract(const MPNumber &n) const
     {
-        unint this_size = num_size();
-        unint n_size = n.num_size();
-        unint size = std::max(this_size, n_size);
+        // unint this_size = num_size();
+        // unint n_size = n.num_size();
+        // unint size = std::max(this_size, n_size);
 
         MPNumber res = (greater_than(n)) ? *this : n;
         const MPNumber &smallest = (greater_than(n)) ? n : *this;
@@ -37,7 +37,7 @@ namespace MPLib
         }
 
         bool carry = false;
-        for (ulint i = 0; i < size; i++)
+        for (ulint i = 0; i < res.num_size(); i++)
         {
             unint prev_val = res.get(i);
             res.num.at(i) = prev_val - smallest.get(i) - ((carry) ? 1 : 0);

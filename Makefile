@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-O4 -Wall -Wextra -Wno-unused-parameter -march=native
+CFLAGS=-O4 -Wall -Wextra -Wno-unused-parameter -ggdb -march=native
 TESTFLAGS=-lgtest -pthread -L./ -lmplib 
 
 SRCDIR=./src

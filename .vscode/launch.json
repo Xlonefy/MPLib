@@ -9,7 +9,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/test/test.elf",
+            "program": "${workspaceFolder}/alloc_test",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

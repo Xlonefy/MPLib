@@ -29,9 +29,9 @@ namespace MPLib
     {
         ulint this_size = num_size();
 
-        std::vector<unint> first_half, second_half;
+        MPNumber first_half, second_half;
         first_half.reserve(location);
-        second_half.reserve(this_size - location);
+        second_half.reserve((this_size > location) ? this_size - location : 1);
 
         for (ulint i = 0; i < this_size; i++)
         {
@@ -45,8 +45,7 @@ namespace MPLib
             }
         }
 
-        // MPNumber(
-        return {first_half, second_half};
+        return std::make_pair(first_half, second_half);
     }
 
     void MPNumber::reserve(uint size)
@@ -68,6 +67,11 @@ namespace MPLib
         {
             num.emplace(num.begin(), 0);
         }
+    }
+
+    void MPNumber::push_back(unint i)
+    {
+        num.push_back(i);
     }
 
     unint MPNumber::get_size() const

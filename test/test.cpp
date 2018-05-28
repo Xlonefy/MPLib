@@ -19,7 +19,7 @@ using MPLib::lint;
 
 
 const unsigned int NUM_TESTS = 1000;
-const unsigned int MAX_STR_LEN = 150;
+const unsigned int MAX_STR_LEN = 500;
 const unsigned int MAX_INT_STR_LEN = 9;
 
 std::string remove_redundancies(std::string str)
@@ -177,7 +177,7 @@ TEST(MPNumberTest, TestSingleIntMulDiv)
 }
 
 TEST(MPNumberTest, TestMultiplicationCommutativity)
-{   
+{
     for (unsigned int i = 0; i < NUM_TESTS; i++)
     {
         std::string a_str, b_str;

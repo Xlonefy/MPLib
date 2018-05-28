@@ -52,7 +52,6 @@ namespace MPLib
         public:
             MPNumber();
             MPNumber(int n);
-            MPNumber(const std::vector<unint> &num);
             MPNumber(const std::string &number, unint base = 10);
             ~MPNumber();
             
@@ -63,6 +62,7 @@ namespace MPLib
             void reserve(uint size);
             void shrink_to_fit();
             void shift_left(unint ammount);
+            void push_back(unint i);
 
             unint get_size() const;
             unint num_size() const;
@@ -121,6 +121,9 @@ namespace MPLib
             MPNumber raw_subtract(unint n) const;
 
     };
+
+    MPNumber quadratic_multiply(const MPNumber &a, const MPNumber &b);
+    MPNumber karatsuba_multiply(const MPNumber &a, const MPNumber &b);
 }
 
 #endif /* MPNUM_H */

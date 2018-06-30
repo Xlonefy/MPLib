@@ -55,7 +55,7 @@ namespace MPLib
         return prod;
     }
 
-    MPNumber MPNumber::pow(uint n) const
+    MPNumber MPNumber::pow(ulint n) const
     {
         MPNumber accumulator(1);
         accumulator.reserve(n * get_size());

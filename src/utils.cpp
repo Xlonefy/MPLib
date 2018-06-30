@@ -48,7 +48,7 @@ namespace MPLib
         return std::make_pair(first_half, second_half);
     }
 
-    void MPNumber::reserve(uint size)
+    void MPNumber::reserve(ulint size)
     {
         num.reserve(size);
     }
@@ -120,7 +120,7 @@ namespace MPLib
         return res;
     }
 
-    uint8_t MPNumber::get_byte(uint location) const
+    uint8_t MPNumber::get_byte(ulint location) const
     {
         int index = location / sizeof(unint);
         int shift = (location % sizeof(unint)) * 8;
@@ -129,7 +129,7 @@ namespace MPLib
 
     }
 
-    void MPNumber::set_byte(uint location, uint8_t value) 
+    void MPNumber::set_byte(ulint location, uint8_t value) 
     {
         int index = location / sizeof(unint);
         int shift = (location % sizeof(unint)) * 8;
@@ -138,7 +138,7 @@ namespace MPLib
         num.at(index) += value << shift;
     }
 
-    bool MPNumber::check_bit(uint location) const 
+    bool MPNumber::check_bit(ulint location) const 
     {
         int index = location / (8 * sizeof(unint));
         int shift = location % (8 * sizeof(unint));
@@ -146,7 +146,7 @@ namespace MPLib
         return 1 & (num.at(index) >> shift);
     }
 
-    void MPNumber::set_bit(uint location, bool value) 
+    void MPNumber::set_bit(ulint location, bool value) 
     {
         int index = location / (8 * sizeof(unint));
         int shift = location % (8 * sizeof(unint));

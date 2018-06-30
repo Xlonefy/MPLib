@@ -59,7 +59,7 @@ namespace MPLib
 
             std::pair<MPNumber, MPNumber> split_at(ulint location) const;
 
-            void reserve(uint size);
+            void reserve(ulint size);
             void shrink_to_fit();
             void shift_left(unint ammount);
             void push_back(unint i);
@@ -69,11 +69,11 @@ namespace MPLib
 
             std::string get_string(unint base = 10) const;
             
-            uint8_t get_byte(uint location) const;
-            void set_byte(uint location, uint8_t value);
+            uint8_t get_byte(ulint location) const;
+            void set_byte(ulint location, uint8_t value);
 
-            bool check_bit(uint location) const;
-            void set_bit(uint location, bool value);
+            bool check_bit(ulint location) const;
+            void set_bit(ulint location, bool value);
 
             // TODO(xlonefy): do a compare function which can be called by these
             bool is_zero() const;
@@ -96,7 +96,7 @@ namespace MPLib
             MPNumber subtract(const MPNumber &n) const;
             MPNumber subtract(nint n) const;
 
-            MPNumber pow(uint n) const;
+            MPNumber pow(ulint n) const;
 
             MPNumber square() const;
 
@@ -110,7 +110,7 @@ namespace MPLib
             std::vector<unint> num;
             bool positive;
 
-            std::unordered_map<uint, std::string> base_strs;
+            std::unordered_map<ulint, std::string> base_strs;
 
             void initialize_values();
 
